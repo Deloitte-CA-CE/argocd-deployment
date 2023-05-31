@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: example-dev
+namePrefix: dev-
+
+resources:
+- ../../base
+
+#components:
+#  - ../../variants/prod
+#  - ../../variants/asia
+
+patchesStrategicMerge:
+- replicas.yaml
+- version.yaml
+images:
+- name: registry.gitlab.com/tfpoc/gilab_agro
+  newTag: eb92698154c9675492ed0f7dca1ea36b572b2dd2

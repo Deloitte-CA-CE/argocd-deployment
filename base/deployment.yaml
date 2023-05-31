@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: example-deployment
+spec:
+   replicas: 1
+   selector:
+      matchLabels:
+         app: nodejs
+   template:
+      metadata:
+         labels:
+            app: nodejs
+      spec:
+         containers:
+            - name: application-container
+              image: registry.gitlab.com/tfpoc/gilab_agro:latest
+              ports:
+                - containerPort: 80
+         imagePullSecrets: 
+            - name: gitlab-creds-secret
